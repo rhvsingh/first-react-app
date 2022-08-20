@@ -1,0 +1,161 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.d-flex {
+    display: flex;
+}
+
+.justify-between {
+    justify-content: space-between;
+}
+
+.align-items-center {
+    align-items: center;
+}
+
+.py-1 {
+    padding-block: 1rem;
+}
+
+.px-1 {
+    padding-inline: 1rem;
+}
+
+.my-1 {
+    margin-block: 1rem;
+}
+
+.mx-1 {
+    margin-inline: 1rem;
+}
+
+
+.py-2 {
+    padding-block: 2rem;
+}
+
+.px-2 {
+    padding-inline: 2rem;
+}
+
+.my-2 {
+    margin-block: 2rem;
+}
+
+.mx-2 {
+    margin-inline: 2rem;
+}
+
+.main {
+    display: flex;
+    min-height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.task-box {
+    --main-color: #04551f;
+    box-shadow: 0px 0px 20px -5px var(--main-color);
+    border-radius: 6px;
+    min-width: 400px;
+    max-width: 1200px;
+    min-height: 500px;
+    margin: 1rem;
+    padding: 0.5rem 1rem;
+    color: var(--main-color);
+}
+
+.main-heading {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.btn {
+    border: 0;
+    outline: none;
+    border-radius: 4px;
+    cursor: pointer;
+    color: aliceblue;
+    /* padding: 0.25rem 2rem; */
+    width: 70px;
+    transition: 0.3s ease-in-out;
+}
+
+.btn:hover {
+    filter: brightness(80%);
+}
+
+.form {
+    animation: fillIn 1s linear forwards;
+}
+
+.form div:not(:nth-last-child(2)) {
+    margin: 1rem auto;
+}
+
+.form label {
+    font-weight: 500;
+}
+
+.form input[type="text"] {
+    width: 100%;
+    padding: 0.4rem 0.3rem;
+    margin: 0.25rem auto;
+    outline: none;
+}
+
+.form input[type="checkbox"] {
+    margin-left: 1rem;
+    position: relative;
+    top: 1px;
+    accent-color: var(--main-color);
+}
+
+.form input[type="submit"] {
+    width: 100%;
+    text-align: center;
+    margin: 1rem auto;
+    padding: 0.4rem 0;
+    border: 0;
+    outline: none;
+    background-color: var(--main-color,#151515);
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
+.form input[type="submit"]:hover {
+    filter: brightness(80%);
+}
+
+@keyframes fillIn {
+    0% {
+        opacity: 0;
+    }
+
+    70%,100% {
+        opacity: 1;
+    }
+}
+
+.task-each {
+    margin: 0.8rem 0;
+    border-radius: 4px;
+    border: 1px solid var(--main-color);
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+    color: rgb(5, 87, 36);
+}
+
+.active {
+    border-left: 5px solid var(--main-color);
+}
+
+.task-date {
+    font-size: 0.7rem;
+    color: #000;
+}
