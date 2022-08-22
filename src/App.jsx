@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 import './style.css'
 import Header from './components/Header'
-import AddTask from './components/AddTask';
+import AddTask from './components/AddTask'
 import Tasks from './components/Tasks'
+import Params from './components/Params'
+import Table from './components/Table'
+import Navigation from './components/Navigation'
 
 function App() {
 
@@ -39,17 +43,35 @@ function App() {
     const id = Math.floor(Math.random() * 10000) + 1
     const newTask = { id, ...task }
     setTasks([...tasks, newTask])
+    setAddTaskToggle(!addTaskToggle)
+  }
+
+  const TaskTracker = () => {
+    return (
+      <div className="main">
+        <div className='task-box'>
+          <Header onAddToggle={() => { setAddTaskToggle(!addTaskToggle) }} addTaskToggle={addTaskToggle} />
+          {addTaskToggle && <AddTask addTask={addTask} />}
+          <Link to="/nav" style={{ color: "green" }}>Navigation</Link>
+          <br />
+          <Link to="/table" style={{ color: "green" }}>Table</Link>
+          <br />
+          {tasks.length > 0 ? (<Tasks tasks={tasks} onDelete={deleteFun} onToggle={toggleReminder} />) : ('No Tasks To Show')}
+        </div>
+      </div>
+    )
   }
 
   return (
-    <div className="main">
-      <div className='task-box'>
-        <Header onAddToggle={() => { setAddTaskToggle(!addTaskToggle) }} addTaskToggle={addTaskToggle} />
-        {addTaskToggle && <AddTask addTask={addTask} />}
-        {tasks.length > 0 ? (<Tasks tasks={tasks} onDelete={deleteFun} onToggle={toggleReminder} />) : ('No Tasks To Show')}
+    <Router>
+      <Routes>
+        <Route path="/" exact element={<TaskTracker />} />
+        <Route path="/taskTracker/:name" element={<Params />} />
+        <Route path="/table" element={<Table />} />
+        <Route path="/nav" element={<Navigation />} />
+      </Routes>
+    </Router>
 
-      </div>
-    </div>
   );
 }
 

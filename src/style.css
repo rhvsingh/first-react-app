@@ -4,6 +4,10 @@
     font-family: 'Montserrat', sans-serif;
 }
 
+:root {
+    --main-color: #04551f;
+}
+
 .d-flex {
     display: flex;
 }
@@ -57,7 +61,6 @@
 }
 
 .task-box {
-    --main-color: #04551f;
     box-shadow: 0px 0px 20px -5px var(--main-color);
     border-radius: 6px;
     min-width: 400px;
@@ -121,7 +124,7 @@
     padding: 0.4rem 0;
     border: 0;
     outline: none;
-    background-color: var(--main-color,#151515);
+    background-color: var(--main-color, #151515);
     color: #fff;
     border-radius: 4px;
     cursor: pointer;
@@ -137,7 +140,8 @@
         opacity: 0;
     }
 
-    70%,100% {
+    70%,
+    100% {
         opacity: 1;
     }
 }
@@ -158,4 +162,43 @@
 .task-date {
     font-size: 0.7rem;
     color: #000;
+}
+
+table,
+tr {
+    border: 3px solid var(--main-color);
+    border-spacing: 0;
+    border-collapse: collapse
+}
+
+table th,
+table td {
+    padding: 0.6rem;
+    border-left: 1px solid var(--main-color);
+}
+
+table th {
+    cursor: pointer;
+    user-select: none;
+}
+
+header {
+    background-color: #151515;
+    color: #fff;
+}
+
+header nav ul li {
+    display: inline-block;
+    padding: 15px 10px;
+    margin: 10px 5px
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    transition: 0.2s ease-in-out;
+}
+
+nav ul li a:hover {
+    color: aquamarine;
 }
