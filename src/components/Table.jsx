@@ -35,7 +35,7 @@ export default function Table() {
         linkedIn: 'sau'
     }, {
         id: 3,
-        name: 'Krishna Yadav',
+        name: 'Raja Harsh Vardhan Singh',
         age: 22,
         year: 3,
         branch: 'Civil',
