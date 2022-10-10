@@ -1,0 +1,125 @@
+{
+  "tasks": [
+    {
+      "id": 0,
+      "task": "HomeWork",
+      "date": "08/20/2022",
+      "reminder": true
+    },
+    {
+      "task": "ClassWork",
+      "date": "25/12/2022",
+      "reminder": true,
+      "id": 1
+    }
+  ],
+  "navigation": [
+    {
+      "link": "",
+      "name": "Home",
+      "dropDown": ""
+    },
+    {
+      "link": "table",
+      "name": "Table",
+      "dropDown": ""
+    },
+    {
+      "link": "contact",
+      "name": "Contact",
+      "dropDown": {
+        "links": [
+          {
+            "dropLink": "phoneNumb",
+            "dropName": "Phone Number"
+          },
+          {
+            "dropLink": "mobNumb",
+            "dropName": "Mobile Number"
+          },
+          {
+            "dropLink": "email",
+            "dropName": "Email Address"
+          }
+        ]
+      }
+    },
+    {
+      "link": "about",
+      "name": "About",
+      "dropDown": {
+        "links": [
+          {
+            "dropLink": "history",
+            "dropName": "History"
+          },
+          {
+            "dropLink": "origin",
+            "dropName": "Origin"
+          },
+          {
+            "dropLink": "established",
+            "dropName": "Established"
+          }
+        ]
+      }
+    }
+  ],
+  "table": [
+    {
+      "id": 0,
+      "name": "Raja Harsh Vardhan Singh",
+      "age": 20,
+      "year": 2,
+      "branch": "CSE",
+      "phoneNo": 7755003846,
+      "email": "rhvsingh004@gmail.com",
+      "github": "rhvsingh",
+      "linkedIn": "rhvsingh"
+    },
+    {
+      "id": 1,
+      "name": "Shivam Singh",
+      "age": 19,
+      "year": 3,
+      "branch": "CSE",
+      "phoneNo": 8883333111,
+      "email": "shivamsingh@gmail.com",
+      "github": "shivsingh",
+      "linkedIn": "shivsingh"
+    },
+    {
+      "id": 2,
+      "name": "Saurabh Mishra",
+      "age": 21,
+      "year": 3,
+      "branch": "B.Sc",
+      "phoneNo": 9100003145,
+      "email": "saurabh@gmail.com",
+      "github": "sau",
+      "linkedIn": "sau"
+    },
+    {
+      "id": 3,
+      "name": "Raja Harsh Vardhan Singh",
+      "age": 22,
+      "year": 3,
+      "branch": "Civil",
+      "phoneNo": 9838226066,
+      "email": "krishna@gmail.com",
+      "github": "krishna",
+      "linkedIn": "krishna"
+    },
+    {
+      "id": 4,
+      "name": "Sanskar Srivastava",
+      "age": 22,
+      "year": 4,
+      "branch": "CS",
+      "phoneNo": 5555003846,
+      "email": "sansri@gmail.com",
+      "github": "sanskar",
+      "linkedIn": "sanskar"
+    }
+  ]
+}

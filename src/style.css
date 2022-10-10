@@ -71,6 +71,104 @@
     color: var(--main-color);
 }
 
+.task-undo-modal {
+    margin-top: 0.7rem;
+    margin-bottom: 0.7rem;
+    display: flex;
+    justify-content: flex-end;
+    background-image: repeating-linear-gradient(-45deg,
+            white 0 20px,
+            red 20px 40px);
+    border: 1px solid red;
+    border-radius: 4px;
+    animation: deleteProgress 10s linear infinite reverse;
+    background-size: 400% 400%;
+    overflow: hidden;
+    display: none;
+    transition: all 2s ease-in-out;
+}
+
+.task-undo-modal button {
+    outline: none;
+    border: 0;
+    padding: 0.8em 1.3em;
+    box-shadow: -2px 0px 10px 0px #151515;
+    cursor: pointer;
+    background-color: #999;
+    border-radius: 4px;
+    color: #fff;
+    transition: 0.3s ease-in-out;
+    font-weight: bold;
+}
+
+.task-undo-modal button:hover {
+    color: #999;
+    background-color: #fff;
+}
+
+.task-each {
+    position: relative;
+    z-index: 100;
+    background-color: #fff;
+    border-radius: 4px;
+    border: 1px solid var(--main-color);
+    padding: 0.5rem 1rem;
+    height: 100%;
+    font-size: 0.8rem;
+    color: rgb(5, 87, 36);
+    cursor: pointer;
+    user-select: none;
+    width: 100%;
+}
+
+.active {
+    border-left: 5px solid var(--main-color);
+}
+
+.task-date {
+    font-size: 0.7rem;
+    color: #000;
+}
+
+.delete-box {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    justify-content: flex-end;
+    background-image: repeating-linear-gradient(-45deg,
+            white 0 20px,
+            var(--main-color) 20px 40px);
+    border: 1px solid var(--main-color);
+    border-radius: 4px;
+    z-index: -1;
+    animation: deleteProgress 10s linear infinite reverse;
+    background-size: 400% 400%;
+}
+
+@keyframes deleteProgress {
+    from {
+        background-position: 50% 100%;
+    }
+
+    to {
+        background-position: 200% 50%;
+    }
+}
+
+.delete-box-icons {
+    position: absolute;
+    z-index: 11000;
+    top: 1em;
+    right: 1em;
+}
+
+.task-box-child {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    margin: 0.8rem 0;
+}
+
 .main-heading {
     font-size: 2rem;
     font-weight: bold;
@@ -146,24 +244,6 @@
     }
 }
 
-.task-each {
-    margin: 0.8rem 0;
-    border-radius: 4px;
-    border: 1px solid var(--main-color);
-    padding: 0.5rem 1rem;
-    font-size: 0.8rem;
-    color: rgb(5, 87, 36);
-}
-
-.active {
-    border-left: 5px solid var(--main-color);
-}
-
-.task-date {
-    font-size: 0.7rem;
-    color: #000;
-}
-
 table,
 tr {
     border: 3px solid var(--main-color);
@@ -180,6 +260,25 @@ table td {
 table th {
     cursor: pointer;
     user-select: none;
+    transition: 0.2s ease-in-out;
+}
+
+table th:hover {
+    background-color: #aaa;
+}
+
+table td {
+    font-size: 0.9rem;
+    user-select: none;
+    transition: 0.2s ease-in-out;
+}
+
+table tr:nth-child(even) {
+    background-color: #ccc;
+}
+
+table tr:hover {
+    background-color: #ddd;
 }
 
 header {
@@ -189,7 +288,7 @@ header {
 
 header .logo {
     user-select: none;
-    margin-left: '10px'
+    margin-left: 10px
 }
 
 header nav {
@@ -290,6 +389,10 @@ nav ul button:hover {
     }
 
     .menu-toggler {
+        display: block;
+    }
+
+    .active-nav {
         display: block;
     }
 

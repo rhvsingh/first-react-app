@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 import './style.css'
 import Header from './components/Header'
@@ -7,43 +7,84 @@ import Tasks from './components/Tasks'
 import Params from './components/Params'
 import Table from './components/Table'
 import Navigation from './components/Navigation'
+import NotFoundPage from './components/NotFoundPage'
 
 function App() {
 
-  const [tasks, setTasks] = useState([{
-    id: 0,
-    task: 'HomeWork',
-    date: '08/20/2022',
-    reminder: true,
-  }, {
-    id: 1,
-    task: 'Skillvalley Project',
-    date: '08/15/2022',
-    reminder: false,
-  }, {
-    id: 2,
-    task: 'Internship Work Pending to be done',
-    date: '08/10/2022',
-    reminder: true,
+  const [tasks, setTasks] = useState([])
+
+  useEffect(() => {
+
+    const getTasks = async () => {
+      const tasksFromServer = await fetchTasks()
+      setTasks(tasksFromServer)
+    }
+
+    getTasks()
+  }, [])
+
+  //Fetch Tasks
+
+  const fetchTasks = async () => {
+    const res = await fetch('http://localhost:5000/tasks')
+    const data = await res.json()
+
+    return data
   }
-  ])
 
   const [addTaskToggle, setAddTaskToggle] = useState(false)
 
 
-  const deleteFun = (id) => {
+  const deleteFun = async (id) => {
+    await fetch(`http://localhost:5000/tasks/${id}`,{
+      method: 'DELETE',
+    })
     setTasks(tasks.filter(task => task.id !== id))
   }
 
-  const toggleReminder = (id) => {
-    setTasks(tasks.map((task) => task.id === id ? { ...task, reminder: !task.reminder } : task))
+  const fetchTask = async (id) => {
+    const res = await fetch(`http://localhost:5000/tasks/${id}`)
+    const data = await res.json()
+
+    return data
   }
 
-  const addTask = (task) => {
-    const id = Math.floor(Math.random() * 10000) + 1
+  const toggleReminder = async (id) => {
+    const taskToToggle = await fetchTask(id)
+    const updTask = {...taskToToggle, reminder: !taskToToggle.reminder}
+
+    console.log(updTask)
+
+    const res = await fetch(`http://localhost:5000/tasks/${id}`,{
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(updTask)
+    })
+
+    const data = await res.json()
+    setTasks(tasks.map((task) => task.id === id ? { ...task, reminder: data.reminder } : task))
+  }
+
+  const addTask = async (task) => {
+
+    const res = await fetch('http://localhost:5000/tasks',{
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(task)
+    })
+
+    const data = await res.json()
+
+    setTasks([...tasks,data])
+
+    /* const id = Math.floor(Math.random() * 10000) + 1
     const newTask = { id, ...task }
     setTasks([...tasks, newTask])
-    setAddTaskToggle(!addTaskToggle)
+    setAddTaskToggle(!addTaskToggle) */
   }
 
   const TaskTracker = () => {
@@ -63,15 +104,17 @@ function App() {
   }
 
   return (
-    <Router>
-      <Routes>
-        <Route path="/" exact element={<TaskTracker />} />
-        <Route path="/taskTracker/:name" element={<Params />} />
-        <Route path="/table" element={<Table />} />
-        <Route path="/nav" element={<Navigation />} />
-      </Routes>
-    </Router>
-
+    <>
+      <Router>
+        <Routes>
+          <Route path="/" element={<><Navigation /> <TaskTracker /></>} />
+          {/* <Route path="/nav" element={} /> */}
+          <Route path="/name/:name" element={<><Navigation /><Params /></>} />
+          <Route path="table" element={<><Navigation /><Table /></>} />
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
+      </Router>
+    </>
   );
 }
 

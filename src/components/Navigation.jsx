@@ -3,49 +3,22 @@ import { Link } from 'react-router-dom'
 import { FaTimes, FaBars,FaAngleDown } from 'react-icons/fa'
 
 export default function Navigation() {
-  const navData = [{
-    link: 'home',
-    name: 'Home',
-    dropDown: ''
-  }, {
-    link: 'table',
-    name: 'Table',
-    dropDown: ''
-  }, {
-    link: 'contact',
-    name: 'Contact',
-    dropDown: {
-      links: [{
-        dropLink: 'phoneNumb',
-        dropName: 'Phone Number'
-      }, {
-        dropLink: 'mobNumb',
-        dropName: 'Mobile Number'
-      }, {
-        dropLink: 'email',
-        dropName: 'Email Address'
-      }]
-    }
-  }, {
-    link: 'about',
-    name: 'About',
-    dropDown: {
-      links: [{
-        dropLink: 'history',
-        dropName: 'History'
-      }, {
-        dropLink: 'origin',
-        dropName: 'Origin'
-      }, {
-        dropLink: 'established',
-        dropName: 'Established'
-      }]
-    }
-  }]
+  const [navData,setNavData] = useState([])
+
+  const fetchNav = async () => {
+    const res = await fetch('http://localhost:5000/navigation')
+    const data = await res.json()
+    return data
+  }
 
   useEffect(() => {
-
-  })
+    const getNav = async() => {
+      const navFromServer = await fetchNav()
+      setNavData(navFromServer)
+    }
+  
+    getNav()
+  },[])
 
   const [counter, setCounter] = useState(0)
   const [idChecker, setIdChecker] = useState(-1)
@@ -114,14 +87,14 @@ export default function Navigation() {
   const navToggler = () => {
     if(clickCheck === 1) {
       setClickCheck(0)
-      document.getElementsByTagName('nav')[0].style.display = 'block'
+      document.getElementsByTagName('nav')[0].classList.toggle('active-nav')
     } else {
       setClickCheck(1)
-      document.getElementsByTagName('nav')[0].style.display = 'none'
+      document.getElementsByTagName('nav')[0].classList.toggle('active-nav')
     }
   }
 
-  const [viewWidth,setViewWidth] = useState(window.innerWidth)
+  /* const [viewWidth,setViewWidth] = useState(window.innerWidth)
 
   useEffect(()=>{
     window.addEventListener("resize", () => setViewWidth(window.innerWidth));
@@ -137,7 +110,7 @@ export default function Navigation() {
       document.getElementsByTagName('nav')[0].style.display = 'none'
       setClickCheck(1)
     }
-  },[viewWidth])
+  },[viewWidth]) */
 
   return (
     <header className='d-flex justify-between align-items-center'>
@@ -146,15 +119,14 @@ export default function Navigation() {
       <nav>
         <span></span>
         <ul>
-          {
-            navData.map((data, index) => {
-              return (data.dropDown === '' ? <li><Link to={'/' + data.link}>{data.name}</Link></li> :
+          {navData.map((data, index) => {
+              return (data.dropDown === '' ? <li key={index}><Link to={'/' + data.link}>{data.name}</Link></li> :
                 (<li key={index}>
                   <button onClick={() => mover(index)}>{data.name} <FaAngleDown className='dropDown-arrow' /></button>
                   <ul className='dropdown-menu' data-id={index}>
-                    {data.dropDown.links.map((dropData) => {
+                    {data.dropDown.links.map((dropData,index) => {
                       //console.log(dropData.dropLink, dropData.dropName)
-                      return (<li>{dropData.dropName}</li>)
+                      return (<li key={index}>{dropData.dropName}</li>)
                     }
                     )}
                   </ul>
