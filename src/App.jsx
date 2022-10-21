@@ -8,16 +8,21 @@ import Params from './components/Params'
 import Table from './components/Table'
 import Navigation from './components/Navigation'
 import NotFoundPage from './components/NotFoundPage'
+import CardSkeleton from './components/CardSkeleton'
+import ProductShow from './pages/ProductShow'
+import Cart from './pages/Cart'
 
 function App() {
 
   const [tasks, setTasks] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
 
     const getTasks = async () => {
       const tasksFromServer = await fetchTasks()
       setTasks(tasksFromServer)
+      setIsLoading(false)
     }
 
     getTasks()
@@ -97,7 +102,8 @@ function App() {
           <br />
           <Link to="/table" style={{ color: "green" }}>Table</Link>
           <br />
-          {tasks.length > 0 ? (<Tasks tasks={tasks} onDelete={deleteFun} onToggle={toggleReminder} />) : ('No Tasks To Show')}
+          {isLoading && <CardSkeleton cards={4}/>}
+          {tasks.length > 0 && (<Tasks tasks={tasks} loading={isLoading} onDelete={deleteFun} onToggle={toggleReminder} />)}
         </div>
       </div>
     )
@@ -111,6 +117,8 @@ function App() {
           {/* <Route path="/nav" element={} /> */}
           <Route path="/name/:name" element={<><Navigation /><Params /></>} />
           <Route path="table" element={<><Navigation /><Table /></>} />
+          <Route path="/products" element={<><Navigation /><ProductShow /></>} />
+          <Route path="/cart" element={<><Navigation /><Cart /></>} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Router>

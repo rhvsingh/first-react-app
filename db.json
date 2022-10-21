@@ -1,16 +1,16 @@
 {
   "tasks": [
     {
-      "id": 0,
-      "task": "HomeWork",
-      "date": "08/20/2022",
-      "reminder": true
-    },
-    {
       "task": "ClassWork",
       "date": "25/12/2022",
-      "reminder": true,
+      "reminder": false,
       "id": 1
+    },
+    {
+      "task": "Give homework",
+      "date": "Tuesday 12PM 20/10/2022",
+      "reminder": true,
+      "id": 2
     }
   ],
   "navigation": [
@@ -22,6 +22,16 @@
     {
       "link": "table",
       "name": "Table",
+      "dropDown": ""
+    },
+    {
+      "link": "products",
+      "name": "Products",
+      "dropDown": ""
+    },
+    {
+      "link": "cart",
+      "name": "Cart",
       "dropDown": ""
     },
     {

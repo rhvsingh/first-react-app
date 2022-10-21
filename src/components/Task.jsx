@@ -73,35 +73,37 @@ const Task = ({ task, index, onDelete, undoButton, onToggle }) => {
 
   function normalClick(id, delID) {
     let taskDelete = document.getElementsByClassName('task-each')[id]
-      let counter = 0
-      console.log('Counter ', counter)
-      let interVal = setInterval(() => {
-        console.log('working')
-        taskDelete.style.transform = 'translateX(-' + counter + '%)'
-        counter += 1
-      }, 1)
-      setTimeout(function () {
-        clearInterval(interVal)
-        undoButton(delID, targetIndex)
-        /* onDelete(delID)  */
-      }, 400)
-    
+    let counter = 0
+    console.log('Counter ', counter)
+    let interVal = setInterval(() => {
+      console.log('working')
+      taskDelete.style.transform = 'translateX(-' + counter + '%)'
+      counter += 1
+    }, 1)
+    setTimeout(function () {
+      clearInterval(interVal)
+      undoButton(delID, targetIndex)
+      /* onDelete(delID)  */
+    }, 400)
+
   }
 
   return (
     <div className='task-box-child'>
-      <div onMouseDown={(e) => deleteBox(e, index)} onMouseUp={() => mouseUP(index, task.id)} onMouseLeave={() => mouseLeave(index)} className={task.reminder ? 'd-flex justify-between align-items-center task-each active' : 'd-flex justify-between align-items-center task-each'} onDoubleClick={() => onToggle(task.id)}>
-        <div>
-          <h3 key={task.id}>{task.task} </h3>
-          <div className="task-date">{task.date}</div>
+      
+        <div onMouseDown={(e) => deleteBox(e, index)} onMouseUp={() => mouseUP(index, task.id)} onMouseLeave={() => mouseLeave(index)} className={task.reminder ? 'd-flex justify-between align-items-center task-each active' : 'd-flex justify-between align-items-center task-each'} onDoubleClick={() => onToggle(task.id)}>
+          <div>
+            <h3 key={task.id}>{task.task} </h3>
+            <div className="task-date">{task.date}</div>
+          </div>
+          <div>
+            <FaTimes style={{ color: 'red', cursor: 'pointer' }} onClick={() => normalClick(index, task.id)} />
+          </div>
         </div>
-        <div>
-          <FaTimes style={{ color: 'red', cursor: 'pointer' }} onClick={() => normalClick(index, task.id)} />
+        <div className='delete-box'>
+          <FaRegTrashAlt className='delete-box-icons' />
         </div>
-      </div>
-      <div className='delete-box'>
-        <FaRegTrashAlt className='delete-box-icons' />
-      </div>
+      
     </div>
   )
 }
