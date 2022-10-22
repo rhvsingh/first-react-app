@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import axios from 'axios';
 
-const CartEach = ({ details, deleteCart }) => {
+const CartEach = ({ details, deleteCart, totalQty }) => {
     const baseURL = 'http://localhost:4000/'
     const proDetails = details.productDetails[0]
     const [qty, setQty] = useState(details.qty)
@@ -12,7 +12,7 @@ const CartEach = ({ details, deleteCart }) => {
             "pid": details.pid,
             "qty": e
         }).then((response) => {
-            console.log(response.data)
+            totalQty(oldValue => oldValue + e)
         })
 
         setQty((oldValue) => {

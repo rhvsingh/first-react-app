@@ -25,31 +25,22 @@
       "dropDown": ""
     },
     {
-      "link": "products",
-      "name": "Products",
+      "link": "scrimba",
+      "name": "Scrimba",
       "dropDown": ""
     },
     {
-      "link": "cart",
-      "name": "Cart",
-      "dropDown": ""
-    },
-    {
-      "link": "contact",
-      "name": "Contact",
+      "link": "ecommerce",
+      "name": "Ecommerce",
       "dropDown": {
         "links": [
           {
-            "dropLink": "phoneNumb",
-            "dropName": "Phone Number"
+            "dropLink": "products",
+            "dropName": "Products"
           },
           {
-            "dropLink": "mobNumb",
-            "dropName": "Mobile Number"
-          },
-          {
-            "dropLink": "email",
-            "dropName": "Email Address"
+            "dropLink": "cart",
+            "dropName": "Cart"
           }
         ]
       }

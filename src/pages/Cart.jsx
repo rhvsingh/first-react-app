@@ -9,14 +9,16 @@ const Cart = () => {
 
     const baseURL = 'http://localhost:4000/'
     const [cartCount, setCartCount] = useState(0);
+    const [totalCartCount, setTotalCartCount] = useState(0);
     const [cartDetails, setCartDetails] = useState([]);
     const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
         axios.get(baseURL + 'cartCount').then((response) => {
-            setCartCount(response.data.count);
+            setCartCount(response.data.count)
+            setTotalCartCount(response.data.totalQty)
         })
-    }, []);
+    }, [totalCartCount]);
 
     useEffect(() => {
         axios.get(baseURL + 'showCart').then((response) => {
@@ -36,12 +38,13 @@ const Cart = () => {
     return (
         <div>
             <div>
-                Cart {cartCount}
+                Products in Cart: {cartCount} <br />
+                Total Items: {totalCartCount}
             </div>
             <div className='cart-details'>
                 {isLoading && <CartSkeleton carts={4} />}
                 {cartDetails.length > 0 && cartDetails.map((item) => {
-                    return <CartEach key={item._id} details={item} deleteCart={deleteCart} />;
+                    return <CartEach key={item._id} details={item} totalQty={setTotalCartCount} deleteCart={deleteCart} />;
                 })}
             </div>
         </div>

@@ -1,0 +1,135 @@
+.card--container {
+    padding: 20px;
+    background-color: #23252c;
+    font-family: 'Inter', sans-serif
+}
+
+.card {
+    max-width: 317px;
+    margin-inline: auto;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-block: 1rem;
+    background-color: #1a1b21;
+    color: #fff
+}
+
+.card--image {
+    position: relative;
+    height: 317px;
+    overflow: hidden;
+}
+
+.card--image img {
+    position: absolute;
+    width: 100%;
+    display: block;
+    height: 100%;
+    transform: scale(2) translateY(20%);
+}
+
+.card--content>* {
+    padding: 0 2rem
+}
+
+.card--title {
+    font-family: 'Inter';
+    text-align: center;
+    margin-top: 1.25rem
+}
+
+.card--title h1 {
+    font-size: 25px
+}
+
+.card--title p {
+    font-size: 12.8px;
+    color: #F3BF99
+}
+
+.card--title a {
+    text-decoration: none;
+    font-size: 10.24px;
+    color: #F5F5F5
+}
+
+.card--buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.3rem;
+    margin-block: 1rem
+}
+
+.card--buttons a {
+    text-decoration: none;
+    border-radius: 6px;
+    font-family: 'Inter';
+    font-size: 14px;
+    line-height: 16px;
+    white-space: nowrap;
+    padding: 0.4rem 1.5rem
+}
+
+.card--buttons a>* {
+    position: relative;
+    top: 2px;
+    margin-right: 4px
+}
+
+.card--buttons a:nth-child(1) {
+    background-color: #fff;
+    border: 1px solid #D1D5DB;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+    color: #374151;
+    padding-inline: 1.7rem
+}
+
+.card--buttons a:nth-child(2) {
+    background-color: #5093E2;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+    color: #FFFFFF
+}
+
+.card--about {
+    margin-top: 2rem
+}
+
+.card--interests {
+    margin-bottom: 2rem
+}
+
+.card--interests---heading {
+    margin: 0;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 150%;
+    color: #F5F5F5
+}
+
+.card--interests---heading~p {
+    margin: 10px 0;
+    font-weight: 400;
+    font-size: 10.24px;
+    line-height: 150%;
+    color: #DCDCDC
+}
+
+.card--footer {
+    background-color: #161619
+}
+
+.card--footer ul {
+    padding: 0;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    padding-top: 0.6rem;
+    padding-bottom: 0.3rem
+}
+
+.card--footer ul li a{
+    font-size: 25px;
+    color: #918E9B
+}

@@ -284,6 +284,8 @@ table tr:hover {
 header {
     background-color: #151515;
     color: #fff;
+    position: relative;
+    z-index: 999;
 }
 
 header .logo {

@@ -11,6 +11,7 @@ import NotFoundPage from './components/NotFoundPage'
 import CardSkeleton from './components/CardSkeleton'
 import ProductShow from './pages/ProductShow'
 import Cart from './pages/Cart'
+import Scrimba from './pages/Scrimba'
 
 function App() {
 
@@ -119,6 +120,7 @@ function App() {
           <Route path="table" element={<><Navigation /><Table /></>} />
           <Route path="/products" element={<><Navigation /><ProductShow /></>} />
           <Route path="/cart" element={<><Navigation /><Cart /></>} />
+          <Route path="/scrimba" element={<><Navigation /><Scrimba /></>} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Router>

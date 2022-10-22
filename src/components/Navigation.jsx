@@ -126,7 +126,7 @@ export default function Navigation() {
                   <ul className='dropdown-menu' data-id={index}>
                     {data.dropDown.links.map((dropData,index) => {
                       //console.log(dropData.dropLink, dropData.dropName)
-                      return (<li key={index}>{dropData.dropName}</li>)
+                      return (<li key={index}><Link to={'/' + dropData.dropLink}>{dropData.dropName}</Link></li>)
                     }
                     )}
                   </ul>
