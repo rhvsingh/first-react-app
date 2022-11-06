@@ -1,9 +1,7 @@
 
-import { Helmet } from 'react-helmet'
+import { Helmet, HelmetProvider } from 'react-helmet-async'
 
 const NotFoundPage = () => {
-
-
     const interval = 500;
 
     function generateLocks() {
@@ -34,13 +32,15 @@ const NotFoundPage = () => {
 
     return (
         <div className="main">
-            <Helmet >
-                <meta charset="UTF-8" />
-                <meta http-equiv="X-UA-Compatible" content="IE=edge " />
-                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-                <title>React First App | Access Denied</title>
-                <link rel="stylesheet" href="access.css" />
-            </Helmet>
+			<HelmetProvider>
+				<Helmet >
+					<meta charset="UTF-8" />
+					<meta http-equiv="X-UA-Compatible" content="IE=edge " />
+					<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+					<title>React First App | Access Denied</title>
+					<link rel="stylesheet" href={`${window.location.origin.toString()}/access.css`} />
+				</Helmet>
+			</HelmetProvider>
             <div className="main-mid">
                 <h1 className="w-100 animate-top jumbo"><code>Access Denied</code></h1>
                 <hr className="w-100 animate-left" style={{ margin: 'auto', width: '50%' }} />

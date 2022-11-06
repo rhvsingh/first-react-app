@@ -32,18 +32,7 @@
     {
       "link": "ecommerce",
       "name": "Ecommerce",
-      "dropDown": {
-        "links": [
-          {
-            "dropLink": "products",
-            "dropName": "Products"
-          },
-          {
-            "dropLink": "cart",
-            "dropName": "Cart"
-          }
-        ]
-      }
+      "dropDown": ""
     },
     {
       "link": "about",
@@ -73,8 +62,8 @@
       "age": 20,
       "year": 2,
       "branch": "CSE",
-      "phoneNo": 7755003846,
-      "email": "rhvsingh004@gmail.com",
+      "phoneNo": 7755775577,
+      "email": "rhvs@gmail.com",
       "github": "rhvsingh",
       "linkedIn": "rhvsingh"
     },
@@ -102,7 +91,7 @@
     },
     {
       "id": 3,
-      "name": "Raja Harsh Vardhan Singh",
+      "name": "Krishna Yadav",
       "age": 22,
       "year": 3,
       "branch": "Civil",
