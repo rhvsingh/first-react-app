@@ -50,14 +50,16 @@ const Login = ({ auth }) => {
 
         await axios.post('http://localhost:4000/otpVerify', data).then((response) => {
             console.log(response.data)
+
             if (response.data.otpVerify) {
-                document.getElementById('otp').removeAttribute('disabled')
+                localStorage.setItem('email', response.data.email)
+                localStorage.setItem('akey', response.data.akey)
                 toast.success('🦄 OTP Verified')
                 setTimeout(() => {
+                    document.getElementById('otp').removeAttribute('disabled')
                     navigate('/ecommerce')
                     auth(oldValue => !oldValue)
                 }, 2000)
-
             }
 
         })

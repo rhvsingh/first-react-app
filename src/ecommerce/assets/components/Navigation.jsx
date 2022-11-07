@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import { FaTimes, FaBars, FaUserCircle, FaAngleDown } from 'react-icons/fa'
 
-const Navigation = ({ logged,setLogged }) => {
+const Navigation = ({ logged, setLogged }) => {
+
+    const navigate = useNavigate()
 
     const baseURL = '/ecommerce'
 
@@ -48,16 +50,18 @@ const Navigation = ({ logged,setLogged }) => {
                 <span></span>
                 <ul>
                     <li><Link to={baseURL}>Home</Link></li>
-                    {logged &&
-                        <>
-                            <li><Link to={baseURL + "/products"}>Products</Link></li>
-                            <li><Link to={baseURL + "/cart"}>Cart</Link></li>
-                        </>
-                    }
+                    <li><Link to={baseURL + "/products"}>Products</Link></li>
+                    {logged && <li><Link to={baseURL + "/cart"}>Cart</Link></li>}
                     <li style={{ position: 'relative', width: '80px', textAlign: 'right' }}>
                         <button onClick={toggleDropdown}><FaUserCircle style={{ position: 'absolute', left: '2px', top: '6px', fontSize: '40px' }} /> <FaAngleDown className='dropDown-arrow' /></button>
                         <ul className='dropdown-menu' style={{ display: 'none' }}>
-                            {logged ? <li onClick={()=>setLogged(oldValue=> !oldValue)}>Log Out</li> : <li><Link to={baseURL + "/login"} >Login / Sign-up</Link></li>}
+                            {logged ? <li onClick={() => setLogged(oldValue => {
+                                if (oldValue === true) {
+                                    localStorage.clear()
+                                    navigate('/ecommerce')
+                                }
+                                return !oldValue
+                            })}>Log Out</li> : <li><Link to={baseURL + "/login"} >Login / Sign-up</Link></li>}
 
                         </ul>
                     </li>

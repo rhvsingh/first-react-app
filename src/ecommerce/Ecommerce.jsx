@@ -1,5 +1,7 @@
-import React, { useState } from 'react'
-import { Routes, Route } from 'react-router-dom'
+import React, { useState, useEffect } from 'react'
+import { Routes, Route, useNavigate } from 'react-router-dom'
+
+import 'react-toastify/dist/ReactToastify.css'
 
 import Navigation from './assets/components/Navigation'
 import ProductShow from './assets/pages/ProductShow'
@@ -8,18 +10,32 @@ import NotFoundPage from '../test/components/NotFoundPage'
 import Login from './assets/components/Login'
 
 const Ecommerce = () => {
+    const navigate = useNavigate()
 
-    const [isAuth, setIsAuth] = useState(false)
+    let localSet
+
+    if (localStorage.getItem('email') && localStorage.getItem('akey')) {
+        localSet = true
+    } else {
+        localSet = false
+    }
+
+    const [isAuth, setIsAuth] = useState(localSet)
     if (isAuth) {
 
     } else {
 
     }
 
-
-
     const Ecommerce = () => {
         return (<p>This is Ecommerce section</p>)
+    }
+
+    const LoginRedirect = () => {
+
+        useEffect(() => {
+            navigate('/ecommerce')
+        }, [])
     }
 
     return (
@@ -29,9 +45,15 @@ const Ecommerce = () => {
                 <Route index element={<Ecommerce />} />
                 {isAuth ?
                     <>
-                        <Route path="/products" element={<ProductShow />} />
-                        <Route path="/cart" element={<Cart />} />
-                    </> : <Route path='/login' element={<Login auth={setIsAuth}/>} />
+                        <Route path="/products" element={<ProductShow isAuth={isAuth} />} />
+                        <Route path="/cart" element={<Cart isAuth={isAuth} />} />
+                        <Route path='/login' element={<LoginRedirect />} />
+                    </> :
+                    <>
+                        <Route path="/products" element={<ProductShow isAuth={isAuth} />} />
+                        <Route path="/cart" element={<Cart isAuth={isAuth} />} />
+                        <Route path='/login' element={<Login auth={setIsAuth} />} />
+                    </>
                 }
 
                 <Route path="*" element={<NotFoundPage />} />

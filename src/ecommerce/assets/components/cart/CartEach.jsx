@@ -1,31 +1,21 @@
 import React, { useState } from 'react'
-import axios from 'axios';
-
-const CartEach = ({ details, deleteCart, totalQty }) => {
+const CartEach = ({ details, deleteCart, changeQty }) => {
     const baseURL = 'http://localhost:4000/'
     const proDetails = details.productDetails[0]
     const [qty, setQty] = useState(details.qty)
 
-    const changeQty = (e) => {
-
-        axios.post(baseURL + 'addCart', {
-            "pid": details.pid,
-            "qty": e
-        }).then((response) => {
-            totalQty(oldValue => oldValue + e)
-        })
-
+    async function qtyChanger(qty, pid) {
+        await changeQty(qty, pid)
         setQty((oldValue) => {
 
-            let newValue = oldValue + e
+            let newValue = oldValue + qty
+            if (newValue === 0) {
+                deleteCart(details.pid)
+            }
             if (newValue >= 0) {
                 return newValue
             }
         })
-    }
-
-    if (qty === 0) {
-        deleteCart(details.pid)
     }
 
     return (
@@ -34,7 +24,7 @@ const CartEach = ({ details, deleteCart, totalQty }) => {
                 <div className='cart-image'>
                     <img src={baseURL + 'uploads/' + proDetails.img} alt={proDetails.name} />
                 </div>
-                <div className='cart-child-detail'>
+                <div className='cart-child-detail px-1'>
                     <div className='cart-name'>{proDetails.name}</div>
                     <div className='cart-desc'>{proDetails.desc}</div>
                     <div className='cart-amount'>
@@ -44,7 +34,7 @@ const CartEach = ({ details, deleteCart, totalQty }) => {
                 </div>
             </div>
             <div>
-                <div className='cart-qty'>Quantity: <span onClick={e => changeQty(-1)}>-</span>{qty}<span onClick={e => changeQty(1)}>+</span></div>
+                <div className='cart-qty'>Quantity: <span onClick={e => qtyChanger(-1, proDetails.pid)}>-</span>{qty}<span onClick={e => qtyChanger(1, proDetails.pid)}>+</span></div>
             </div>
         </div>
     )

@@ -4,23 +4,45 @@ import ProductCards from '../components/product/ProductCards'
 import ProductCardAdd from '../components/product/ProductCardAdd'
 import ProductCardSkeleton from '../components/product/ProductCardSkeleton'
 import { ToastContainer, toast } from 'react-toastify'
-
-import 'react-toastify/dist/ReactToastify.css'
 import './productShow.css'
 
-const ProductShow = () => {
+const ProductShow = ({ isAuth }) => {
 
   const [products, setProducts] = useState([])
   const [isLoading, setIsLoading] = useState(true)
 
   const baseURL = 'http://localhost:4000/'
 
-  useEffect(() => {
-    axios.get(baseURL + 'productList').then((response) => {
-      setProducts(response.data)
-      setIsLoading(false)
+  function addToCart(pid) {
+    let apiURL = baseURL + 'addCart/' + localStorage.getItem('akey')
+    axios.post(apiURL, {
+      "pid": pid,
+      "qty": 1
+    }).then((response) => {
+      console.log(response.data)
+      if(response.data.result) {
+        toast.info('🦄 Product added to Cart')
+      }
     })
-  }, []);
+  }
+
+  useEffect(() => {
+    let apiURL
+    if (isAuth) {
+      apiURL = baseURL + 'products/' + localStorage.getItem('akey')
+      axios.get(apiURL).then((response) => {
+        setProducts(response.data.data)
+        setIsLoading(false)
+      })
+    } else {
+      apiURL = baseURL + 'productList/'
+      axios.get(apiURL).then((response) => {
+        setProducts(response.data)
+        setIsLoading(false)
+      })
+    }
+    
+  }, [isAuth]);
 
   const productAdd = (data) => {
     axios.post(baseURL + 'addProduct', {
@@ -55,12 +77,12 @@ const ProductShow = () => {
       <div className='products'>
         {isLoading && <ProductCardSkeleton cards={4} />}
         {products.length > 0 && products.map((product) => {
-          return <ProductCards key={product.pid} product={product} />
+          return <ProductCards key={product.pid} product={product} isAuth={isAuth} cartAdder={addToCart} />
         })}
       </div>
       <ToastContainer
         position="bottom-right"
-        autoClose={5000}
+        autoClose={2000}
         hideProgressBar={false}
         newestOnTop={false}
         closeOnClick
