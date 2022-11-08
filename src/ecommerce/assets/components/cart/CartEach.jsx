@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-const CartEach = ({ details, deleteCart, changeQty }) => {
+const CartEach = ({ details, deleteCart, changeQty, proFromCartDelete }) => {
     const baseURL = 'http://localhost:4000/'
     const proDetails = details.productDetails[0]
     const [qty, setQty] = useState(details.qty)
@@ -27,14 +27,27 @@ const CartEach = ({ details, deleteCart, changeQty }) => {
                 <div className='cart-child-detail px-1'>
                     <div className='cart-name'>{proDetails.name}</div>
                     <div className='cart-desc'>{proDetails.desc}</div>
-                    <div className='cart-amount'>
+                    <div className='cart-amount cart-mobile-only'>
                         <span className='cart-price'>{proDetails.price}</span>
                         <span className='cart-discount'>(-{proDetails.discount}%)</span>
+                    </div>
+                    <div className='cart-qty'>
+                        Quantity:
+                        <span className='cart-qty-container'>
+                            <span onClick={e => qtyChanger(-1, proDetails.pid)}>-</span>
+                            {qty}
+                            <span onClick={e => qtyChanger(1, proDetails.pid)}>+</span>
+                        </span>
+                        <span className='cart-delete-button' onClick={e => proFromCartDelete(proDetails.pid)}>Delete</span>
                     </div>
                 </div>
             </div>
             <div>
-                <div className='cart-qty'>Quantity: <span onClick={e => qtyChanger(-1, proDetails.pid)}>-</span>{qty}<span onClick={e => qtyChanger(1, proDetails.pid)}>+</span></div>
+                <div className='cart-amount px-1'>
+                    <span className='cart-price'>{proDetails.price}</span>
+                    <span className='cart-discount'>(-{proDetails.discount}%)</span>
+                </div>
+
             </div>
         </div>
     )

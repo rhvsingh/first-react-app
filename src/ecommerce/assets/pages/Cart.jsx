@@ -18,6 +18,7 @@ const Cart = ({ isAuth }) => {
     const baseURL = 'http://localhost:4000/'
     const [cartCount, setCartCount] = useState(0);
     const [totalCartCount, setTotalCartCount] = useState(0);
+    const [tPriceShow, setTPriceShow] = useState(0);
     const [cartDetails, setCartDetails] = useState([]);
     const [isLoading, setIsLoading] = useState(true)
 
@@ -26,8 +27,9 @@ const Cart = ({ isAuth }) => {
         axios.get(apiURL).then((response) => {
             setCartCount(response.data.count)
             setTotalCartCount(response.data.totalQty)
+            setTPriceShow(response.data.tCalcPrice)
         })
-    }, [totalCartCount]);
+    }, [totalCartCount, cartDetails]);
 
     useEffect(() => {
 
@@ -58,21 +60,46 @@ const Cart = ({ isAuth }) => {
         )
     }
 
+    const proFromCartDelete = (pid) => {
+
+        let apiURL = baseURL + 'cartDelete/' + pid + '/' + localStorage.getItem('akey')
+        axios.get(apiURL).then((response) => {
+            if (response.data.result) {
+                setCartDetails(
+                    cartDetails.filter(cart => {
+                        return cart.pid !== pid
+                    })
+                )
+            }
+        })
+    }
+
     return (
-        <>
-            <div>
-                <div>
-                    Products in Cart: {cartCount} <br />
-                    Total Items: {totalCartCount}
+        <div className='container d-flex justify-between py-2 px-2 gap-2'>
+            <div className='cart-details px-2 py-2'>
+
+                <div className='d-flex justify-between'>
+                    <div style={{ fontSize: '1.5rem', paddingBottom: '0.25rem', fontWeight: '500' }}>Shopping Cart</div>
+                    <div>Products in Cart: {cartCount}</div>
                 </div>
-                <div className='cart-details'>
-                    {isLoading && <CartSkeleton carts={4} />}
-                    {cartDetails.length > 0 && cartDetails.map((item) => {
-                        return <CartEach key={item._id} details={item} changeQty={changeQty} deleteCart={deleteCart} />;
-                    })}
+                {isLoading && <CartSkeleton carts={4} />}
+                {cartDetails.length > 0 && cartDetails.map((item) => {
+                    return <CartEach key={item._id} details={item} changeQty={changeQty} deleteCart={deleteCart} proFromCartDelete={proFromCartDelete} />;
+                })}
+            </div>
+            <div className='cart-submit-container'><button className='cart-submit-button mobile-cart-submit-button'>Proceed to Buy ({totalCartCount > 1 ? `${totalCartCount} items` : `${totalCartCount} item`})</button></div>
+            <div>
+                <div className='cart-subtotal px-1 py-1'>
+                    <span style={{ fontWeight: '500' }}>
+                        Subtotal ({totalCartCount > 1 ? `${totalCartCount} items` : `${totalCartCount} item`}):
+                    </span>
+                    <span style={{ fontWeight: '600' }}>
+                        &nbsp;&#8377;{tPriceShow}
+                    </span>
+                    <div className='cart-submit-container'><button className='cart-submit-button'>Proceed to Buy</button></div>
                 </div>
             </div>
-        </>
+        </div>
     )
 }
 

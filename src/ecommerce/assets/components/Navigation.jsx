@@ -44,7 +44,7 @@ const Navigation = ({ logged, setLogged }) => {
 
     return (
         <header className='d-flex justify-between align-items-center'>
-            <div className='logo'>Logo</div>
+            <div className='logo'>CartZilla</div>
             <div className='menu-toggler' onClick={() => navToggler()} >{clickCheck ? <FaBars /> : <FaTimes />}</div>
             <nav>
                 <span></span>

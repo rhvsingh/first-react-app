@@ -8,6 +8,7 @@ import ProductShow from './assets/pages/ProductShow'
 import Cart from './assets/pages/Cart'
 import NotFoundPage from '../test/components/NotFoundPage'
 import Login from './assets/components/Login'
+import Footer from './assets/components/Footer'
 
 const Ecommerce = () => {
     const navigate = useNavigate()
@@ -39,7 +40,7 @@ const Ecommerce = () => {
     }
 
     return (
-        <div>
+        <div style={{backgroundColor: '#ddd'}}>
             <Navigation logged={isAuth} setLogged={setIsAuth} />
             <Routes>
                 <Route index element={<Ecommerce />} />
@@ -58,6 +59,7 @@ const Ecommerce = () => {
 
                 <Route path="*" element={<NotFoundPage />} />
             </Routes>
+            <Footer />
         </div>
     )
 }
