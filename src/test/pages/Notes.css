@@ -1,0 +1,14 @@
+aside .btn {
+    background-color: #4a4e74;
+    font-size: 1.8rem;
+}
+
+.aside-child {
+    font-weight: bold;
+    letter-spacing: 1px
+}
+
+.aside-child.active-note {
+    color: aliceblue;
+    background-color: #4a4e74
+}

@@ -25,6 +25,11 @@
       "dropDown": ""
     },
     {
+      "link": "notes",
+      "name": "Notes",
+      "dropDown": ""
+    },
+    {
       "link": "scrimba",
       "name": "Scrimba",
       "dropDown": ""

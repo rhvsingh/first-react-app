@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { FaTimes, FaBars, FaAngleDown } from 'react-icons/fa'
 
+import ScrollIndicator from './ScrollIndicator'
+
 export default function Navigation() {
   const [navData, setNavData] = useState([])
 
@@ -113,27 +115,28 @@ export default function Navigation() {
   },[viewWidth]) */
 
   return (
-    <header className='d-flex justify-between align-items-center'>
-      <div className='logo'>Logo</div>
-      <div className='menu-toggler' onClick={() => navToggler()} >{clickCheck ? <FaBars /> : <FaTimes />}</div>
-      <nav>
-        <span></span>
-        <ul>
-          {navData.map((data, index) => {
-            return (data.dropDown === '' ? <li key={index}><Link to={'/' + data.link}>{data.name}</Link></li> :
-              (<li key={index}>
-                <button onClick={() => mover(index)}>{data.name} <FaAngleDown className='dropDown-arrow' /></button>
-                <ul className='dropdown-menu' data-id={index}>
-                  {data.dropDown.links.map((dropData, index) => {
-                    //console.log(dropData.dropLink, dropData.dropName)
-                    return (<li key={index}><Link to={'/' + dropData.dropLink}>{dropData.dropName}</Link></li>)
-                  }
-                  )}
-                </ul>
-              </li>)
-            )
-          })}
-          {/* <li><Link to='/'>Home</Link></li>
+    <>
+      <header className='d-flex justify-between align-items-center'>
+        <div className='logo'>Logo</div>
+        <div className='menu-toggler' onClick={() => navToggler()} >{clickCheck ? <FaBars /> : <FaTimes />}</div>
+        <nav>
+          <span></span>
+          <ul>
+            {navData.map((data, index) => {
+              return (data.dropDown === '' ? <li key={index}><Link to={'/' + data.link}>{data.name}</Link></li> :
+                (<li key={index}>
+                  <button onClick={() => mover(index)}>{data.name} <FaAngleDown className='dropDown-arrow' /></button>
+                  <ul className='dropdown-menu' data-id={index}>
+                    {data.dropDown.links.map((dropData, index) => {
+                      //console.log(dropData.dropLink, dropData.dropName)
+                      return (<li key={index}><Link to={'/' + dropData.dropLink}>{dropData.dropName}</Link></li>)
+                    }
+                    )}
+                  </ul>
+                </li>)
+              )
+            })}
+            {/* <li><Link to='/'>Home</Link></li>
           <li><Link to='/table'>Table</Link></li>
           <li>
             <button  onClick={()=>mover(0)}>Contact</button>
@@ -151,9 +154,10 @@ export default function Navigation() {
               <li>E-Mail</li>
             </ul>
           </li> */}
-        </ul>
-      </nav>
-
-    </header>
+          </ul>
+        </nav>
+      </header>
+      <ScrollIndicator />
+    </>
   )
 }

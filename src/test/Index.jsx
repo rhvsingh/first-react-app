@@ -9,6 +9,8 @@ import Params from './components/Params'
 import Table from './components/Table'
 import NotFoundPage from './components/NotFoundPage'
 import CardSkeleton from './components/CardSkeleton'
+
+import Notes from './pages/Notes'
 import Scrimba from './pages/Scrimba'
 
 const Index = () => {
@@ -111,7 +113,8 @@ const Index = () => {
         <Routes>
             <Route index element={<><Navigation /> <TaskTracker /></>} />
             <Route path="/name/:name" element={<><Navigation /><Params /></>} />
-            <Route path="table" element={<><Navigation /><Table /></>} />
+            <Route path="/table" element={<><Navigation /><Table /></>} />
+            <Route path="/notes" element={<><Navigation /><Notes /></>} />
             <Route path="/scrimba" element={<><Navigation /><Scrimba /></>} />
             <Route path="*" element={<NotFoundPage />} />
         </Routes>
