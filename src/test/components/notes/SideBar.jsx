@@ -1,6 +1,7 @@
 import React from 'react'
+import { FaTrash } from 'react-icons/fa'
 
-const SideBar = ({ addButton, noteData, activateNote, selectedId }) => {
+const SideBar = ({ addButton, noteData, activateNote, selectedId, deleteNote }) => {
     return (
         <aside>
             <div className='px-1 py-1'>
@@ -12,8 +13,13 @@ const SideBar = ({ addButton, noteData, activateNote, selectedId }) => {
             <div>
                 {noteData.map((note, i) => {
                     return (
-                        <div className={`aside-child px-1 py-1 ${selectedId === note.id ? 'active-note' : ''}`} data-id={note.id} onClick={activateNote} key={i}>
-                            Note {i + 1}
+                        <div style={{ position: 'relative' }} key={i}>
+                            <div className={`aside-child px-1 py-1 ${selectedId === note.id ? 'active-note' : ''}`} data-id={note.id} onClick={activateNote}>
+                                Note {i + 1}
+                                <br />
+                                {note.content.length > 20 ? note.content.slice(0, 20) + '...' : note.content}
+                            </div>
+                            <div className="note-delete-button" onClick={() => { deleteNote(note.id) }}><FaTrash /></div>
                         </div>
                     )
                 })}

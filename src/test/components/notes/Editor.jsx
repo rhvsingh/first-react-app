@@ -1,8 +1,11 @@
 import React from 'react'
 
-const Editor = () => {
+const Editor = ({ noteData, setNoteData }) => {
+
   return (
-    <div>Editor</div>
+    <div>
+      <textarea value={noteData} placeholder="Enter note here" onChange={(e) => { setNoteData(e.target.value) }} />
+    </div>
   )
 }
 
