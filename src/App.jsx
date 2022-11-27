@@ -5,9 +5,6 @@ import './style.css'
 import Index from './test/Index';
 import NotFoundPage from './test/components/NotFoundPage'
 
-//Ecommerce
-import Ecommerce from './ecommerce/Ecommerce'
-
 function App() {
 
   return (
@@ -15,7 +12,6 @@ function App() {
       <Router>
         <Routes>
           <Route path="/*" element={<Index />} />
-          <Route path="/ecommerce/*" element={<Ecommerce />} />
           {/* <Route path="/nav" element={} /> */}
           <Route path="*" element={<NotFoundPage />} />
         </Routes>

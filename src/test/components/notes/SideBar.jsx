@@ -17,7 +17,7 @@ const SideBar = ({ addButton, noteData, activateNote, selectedId, deleteNote }) 
                             <div className={`aside-child px-1 py-1 ${selectedId === note.id ? 'active-note' : ''}`} data-id={note.id} onClick={activateNote}>
                                 Note {i + 1}
                                 <br />
-                                {note.content.length > 20 ? note.content.slice(0, 20) + '...' : note.content}
+                                {note.content.split("\n").length > 20 ? note.content.split("\n")[0].slice(0, 20) + '...' : note.content.split("\n")[0]}
                             </div>
                             <div className="note-delete-button" onClick={() => { deleteNote(note.id) }}><FaTrash /></div>
                         </div>

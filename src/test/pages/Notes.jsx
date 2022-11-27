@@ -10,7 +10,7 @@ import './Notes.css'
 const Notes = () => {
 
     const [noteData, setNoteData] = useState(() => JSON.parse(localStorage.getItem('noteData')) || [])
-    const [selectedId, setSelectedId] = useState(noteData[0].id || 0)
+    const [selectedId, setSelectedId] = useState((noteData[0] && noteData[0].id) || 0)
 
     useEffect(() => {
         localStorage.setItem('noteData', JSON.stringify(noteData))

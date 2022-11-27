@@ -24,8 +24,18 @@ aside .btn {
 
 .note-delete-button {
     position: absolute;
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.3s ease-in-out;
+    cursor: pointer;
     right: 1rem;
     top: 1rem
+}
+
+.aside-child:hover~.note-delete-button,
+.note-delete-button:hover {
+    visibility: visible;
+    opacity: 1;
 }
 
 .aside-child.active-note~ .note-delete-button {

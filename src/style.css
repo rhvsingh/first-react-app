@@ -20,8 +20,20 @@
     justify-content: center;
 }
 
+.justify-around {
+    justify-content: space-around;
+}
+
 .align-items-center {
     align-items: center
+}
+
+.flex-direc-col {
+    flex-direction: column;
+}
+
+.flex-direc-row {
+    flex-direction: row;
 }
 
 .gap-1 {
@@ -84,6 +96,14 @@
 .main-heading {
     font-size: 2rem;
     font-weight: bold;
+}
+
+#root {
+    min-height: 100vh;
+}
+
+#root:has(.tenzies) {
+    background-color: #0B2434;
 }
 
 .btn {
@@ -337,7 +357,7 @@ nav ul button:hover {
 
 .scroller-progress {
     height: 3px;
-    background-color:rgb(12, 231, 231);
+    background-color: rgb(12, 231, 231);
 }
 
 

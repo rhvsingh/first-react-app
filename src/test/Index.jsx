@@ -11,6 +11,7 @@ import NotFoundPage from './components/NotFoundPage'
 import CardSkeleton from './components/CardSkeleton'
 
 import Notes from './pages/Notes'
+import Tenzies from './pages/Tenzies'
 import Scrimba from './pages/Scrimba'
 
 const Index = () => {
@@ -115,6 +116,7 @@ const Index = () => {
             <Route path="/name/:name" element={<><Navigation /><Params /></>} />
             <Route path="/table" element={<><Navigation /><Table /></>} />
             <Route path="/notes" element={<><Navigation /><Notes /></>} />
+            <Route path="/tenzies" element={<><Navigation /><Tenzies /></>} />
             <Route path="/scrimba" element={<><Navigation /><Scrimba /></>} />
             <Route path="*" element={<NotFoundPage />} />
         </Routes>

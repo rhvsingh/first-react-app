@@ -35,18 +35,13 @@
       "dropDown": ""
     },
     {
-      "link": "ecommerce",
-      "name": "Ecommerce",
-      "dropDown": ""
-    },
-    {
-      "link": "about",
-      "name": "About",
+      "link": "more",
+      "name": "More",
       "dropDown": {
         "links": [
           {
-            "dropLink": "history",
-            "dropName": "History"
+            "dropLink": "tenzies",
+            "dropName": "Tenzies"
           },
           {
             "dropLink": "origin",
