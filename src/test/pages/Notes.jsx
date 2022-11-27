@@ -77,8 +77,10 @@ const Notes = () => {
             if (note.id === id) {
                 if (noteData[index - 1] != null) {
                     setSelectedId(noteData[index - 1].id)
-                } else {
+                } else if(noteData[index + 1] != null) {
                     setSelectedId(noteData[index + 1].id)
+                } else {
+                    setSelectedId(0)
                 }
             }
         })
@@ -87,7 +89,7 @@ const Notes = () => {
 
     return (
         noteData.length ?
-            <Split className='d-flex' style={{ height: 'calc(100vh - 56px)' }}
+            <Split className='d-flex notes' style={{ height: 'calc(100vh - 56px)' }}
                 gutterSize={10}
                 sizes={[25, 75]}
                 minSize={[100, 300]}
@@ -97,7 +99,7 @@ const Notes = () => {
                 <Editor noteData={noteData.find(data => data.id === selectedId).content} setNoteData={updateData} />
             </Split>
             :
-            <div className='main'>
+            <div className='main notes'>
                 <div className='ta-center'>
                     <h1>You have no notes</h1>
                     <button className='px-2 py-1 my-1' onClick={createNewOne}>Create one now</button>

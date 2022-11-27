@@ -3,7 +3,7 @@ import React from 'react'
 const Editor = ({ noteData, setNoteData }) => {
 
   return (
-    <div>
+    <div className='notes-editor'>
       <textarea value={noteData} placeholder="Enter note here" onChange={(e) => { setNoteData(e.target.value) }} />
     </div>
   )

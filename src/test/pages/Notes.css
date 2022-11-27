@@ -22,6 +22,39 @@ aside .btn {
     background-color: blanchedalmond
 }
 
+.notes h1 {
+    font-weight: 600
+}
+
+.notes button {
+    outline: none;
+    border: 0;
+    background-color: #333;
+    color: #ddd;
+    border-radius: 4px;
+    cursor: pointer
+}
+
+.notes button:active {
+    box-shadow: inset 5px 5px 10px -3px rgba(0, 0, 0, 1)
+}
+
+.notes-editor {
+    padding: 1rem
+}
+
+.notes-editor textarea {
+    width: 100%;
+    border: 1px solid #ccc;
+    padding: 1rem;
+    border-radius: 6px;
+    height: calc(100vh - 5.5rem)
+}
+
+.notes-editor textarea:focus {
+    outline: 1px solid #aaa
+}
+
 .note-delete-button {
     position: absolute;
     visibility: hidden;
