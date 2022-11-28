@@ -15,6 +15,34 @@ const Tenzies = () => {
     const [gameStart, setGameStart] = useState(false)
     const timerInterval = useRef()
 
+    if (tenzies) {
+        let tenziesData
+        if (localStorage.getItem('tenziesData') && localStorage.getItem('tenziesData').rolls && localStorage.getItem('tenziesData').time) {
+            if (localStorage.getItem('tenziesData').time > secCount) {
+                tenziesData = {
+                    rolls: localStorage.getItem('tenziesData').rolls,
+                    time: secCount
+                }
+            } else if (localStorage.getItem('tenziesData').rolls > rollCount) {
+                tenziesData = {
+                    rolls: rollCount,
+                    time: localStorage.getItem('tenziesData').time
+                }
+            } else if (localStorage.getItem('tenziesData').rolls > rollCount && localStorage.getItem('tenziesData').time > secCount) {
+                tenziesData = {
+                    rolls: localStorage.getItem('tenziesData').rolls,
+                    time: localStorage.getItem('tenziesData').time
+                }
+            }
+        } else {
+            tenziesData = {
+                rolls: rollCount,
+                time: secCount
+            }
+        }
+        localStorage.setItem('tenziesData', JSON.stringify(tenziesData))
+    }
+
     useEffect(() => {
         let allHeld = dieElement.every(die => die.isHeld)
         let firstValue = dieElement[0].value
@@ -82,8 +110,19 @@ const Tenzies = () => {
         setDieElement(allNewDies())
     }
 
+    const BestGame = () => {
+        let tenziesData = JSON.parse(localStorage.getItem("tenziesData"))
+        return (
+            <div className={TenziesStyle.bestGame}>
+                Minimum Rolls: {tenziesData.rolls}
+                <br />
+                Best Time: {tenziesData.time}
+            </div>
+        )
+    }
+
     return (
-        <div className='tenzies'>
+        <div className={`tenzies ${TenziesStyle.tenziesObj}`}>
             <div className={`d-flex align-items-center justify-around flex-direc-col gap-2 ${TenziesStyle.tenziesMain}`}>
                 {tenzies && <Confetti />}
                 <h1>Tenzies</h1>
@@ -96,6 +135,7 @@ const Tenzies = () => {
                 <br />
                 {(gameStart || tenzies) && `Timer: ${secCount} seconds`}
             </div>
+            {localStorage.getItem('tenziesData') && <BestGame />}
         </div>
     )
 }

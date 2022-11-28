@@ -6,7 +6,6 @@
     padding: 2rem;
     margin-top: 2rem;
     margin-inline: auto
-
 }
 
 .tenziesMainGrid {
@@ -46,3 +45,17 @@
     box-shadow: inset 5px 5px 10px -3px rgba(0, 0, 0, 0.7)
 }
 
+.tenziesMain + .bestGame {
+    border-radius: 0 0 5px 5px;
+}
+
+.bestGame {
+    max-width: 800px;
+    background-color: #F5F5F5;
+    margin: auto;
+    text-align: center;
+}
+
+.tenziesObj:has(.bestGame) .tenziesMain {
+    border-radius: 5px 5px 0 0;
+}
