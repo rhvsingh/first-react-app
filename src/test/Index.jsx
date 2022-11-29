@@ -13,6 +13,7 @@ import CardSkeleton from './components/CardSkeleton'
 import Notes from './pages/Notes'
 import Tenzies from './pages/Tenzies'
 import Scrimba from './pages/Scrimba'
+import QuizApp from './pages/QuizApp'
 
 const Index = () => {
 
@@ -118,6 +119,7 @@ const Index = () => {
             <Route path="/notes" element={<><Navigation /><Notes /></>} />
             <Route path="/tenzies" element={<><Navigation /><Tenzies /></>} />
             <Route path="/scrimba" element={<><Navigation /><Scrimba /></>} />
+            <Route path="/quizapp" element={<><Navigation /><QuizApp /></>} />
             <Route path="*" element={<NotFoundPage />} />
         </Routes>
     )

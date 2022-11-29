@@ -44,12 +44,8 @@
             "dropName": "Tenzies"
           },
           {
-            "dropLink": "origin",
-            "dropName": "Origin"
-          },
-          {
-            "dropLink": "established",
-            "dropName": "Established"
+            "dropLink": "quizapp",
+            "dropName": "Quiz App"
           }
         ]
       }

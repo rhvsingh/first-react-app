@@ -113,7 +113,7 @@ const Tenzies = () => {
     const BestGame = () => {
         let tenziesData = JSON.parse(localStorage.getItem("tenziesData"))
         return (
-            <div className={TenziesStyle.bestGame}>
+            <div className={TenziesStyle.bestGame + ' py-1'}>
                 Minimum Rolls: {tenziesData.rolls}
                 <br />
                 Best Time: {tenziesData.time}

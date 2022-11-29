@@ -1,0 +1,18 @@
+.quizBox {
+    min-height: calc(100vh - 56px);
+    position: relative;
+}
+
+.quizIconRight {
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: -1
+}
+
+.quizIconLeft {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    z-index: -1
+}
