@@ -5,14 +5,14 @@
 }
 
 .quizIconRight {
-    position: absolute;
+    position: fixed;
     right: 0;
     top: 0;
     z-index: -1
 }
 
 .quizIconLeft {
-    position: absolute;
+    position: fixed;
     left: 0;
     bottom: 0;
     z-index: -1
@@ -93,4 +93,64 @@
 .quizOptions label:has(input[type="radio"]:checked) {
     border-color: transparent;
     background-color: #d6daf3
+}
+
+.frontQuiz {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Buttons only */
+
+.quizStartButton {
+    border: 0;
+    background-color: #4d599b;
+    color: #fff;
+    border-radius: 15px;
+    font-size: 1.5rem;
+    padding: 1.25rem 5rem;
+    cursor: pointer;
+}
+
+.checkAnswerButton {
+    display: block;
+    margin: auto;
+    border: 0;
+    background-color: #4d599b;
+    color: #fff;
+    border-radius: 10px;
+    font-size: 1rem;
+    padding: 1rem 2rem;
+    outline: none;
+    cursor: pointer
+}
+
+.resetButtonContainer {
+    text-align: center;
+    font-weight: bold;
+    color: #2a3162;
+    font-size: 1.25rem;
+}
+
+.resetButtonContainer button {
+    background-color: #4d599b;
+    color: #fff;
+    border-radius: 10px;
+    font-size: 1rem;
+    padding: 1rem 2rem;
+    border: 0;
+    outline: none;
+    margin-left: 2rem;
+    cursor: pointer
+}
+
+
+.quizStartButton:hover,
+.quizStartButton:active,
+.checkAnswerButton:hover,
+.checkAnswerButton:active,
+.resetButtonContainer button:hover,
+.resetButtonContainer button:active {
+    box-shadow: inset 10px 10px 20px -20px #000
 }

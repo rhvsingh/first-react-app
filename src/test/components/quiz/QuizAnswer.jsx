@@ -1,9 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
+import Confetti from "react-confetti"
 
 import QuizStyles from '../../pages/quizapp.module.css'
 
 const QuizAnswer = ({ quizReset, data }) => {
     let scoreCount = 0
+    const [numberOfPieces, setNumberOfPieces] = useState(200)
+    setTimeout(() => {
+        setNumberOfPieces(0)
+    }, 5000)
     return (
         <div>
             {
@@ -30,7 +35,11 @@ const QuizAnswer = ({ quizReset, data }) => {
                     )
                 })
             }
-            <div>You scored {scoreCount}/{data.length} correct answers <button onClick={() => { quizReset(false) }}>Play again</button></div>
+            <div className={QuizStyles.resetButtonContainer}>You scored {scoreCount}/{data.length} correct answers <button onClick={() => { quizReset(false) }}>Play again</button></div>
+
+            {scoreCount > 2 && <Confetti tweenDuration={5} numberOfPieces={numberOfPieces} onConfettiComplete={(e) => {
+                e.canvas.width = 0
+            }} />}
         </div>
     )
 }

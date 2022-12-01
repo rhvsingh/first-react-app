@@ -1,5 +1,7 @@
 import React from 'react'
 
+import QuizStyles from '../../pages/quizapp.module.css'
+
 const QuizStart = (props) => {
 
     function startQuiz() {
@@ -7,10 +9,10 @@ const QuizStart = (props) => {
     }
 
     return (
-        <div className="frontQuiz">
+        <div className={QuizStyles.frontQuiz}>
             <h1>Quiz App</h1>
             <p>Give answers and check your score</p>
-            <button onClick={startQuiz}>Start quiz</button>
+            <button className={QuizStyles.quizStartButton} onClick={startQuiz}>Start quiz</button>
         </div>
     )
 }
