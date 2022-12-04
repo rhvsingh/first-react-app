@@ -27,20 +27,22 @@ export default function Navigation() {
   const [clickCheck, setClickCheck] = useState(1)
 
   const mover = (id) => {
-    console.log(id)
+    //console.log(id)
+    let dropArray = document.getElementsByClassName('dropdown-menu');
+
     if (idChecker === id) {
       setIdChecker(-1)
+      console.log('Pop on double click')
+
     } else {
-      let dropArray = document.getElementsByClassName('dropdown-menu');
       for (let i = 0; i < dropArray.length; i++) {
         dropArray[i].style.display = 'none';
       }
       setIdChecker(id)
     }
-    let dropArray = document.getElementsByClassName('dropdown-menu');
     for (let i = 0; i < dropArray.length; i++) {
       if (parseInt(dropArray[i].getAttribute('data-id')) === id) {
-        console.log('Matched', i, id)
+        //console.log('Matched', i, id)
         let dropDown = dropArray[i]
         let windowWidth = window.innerWidth
         if (counter === 0 || idChecker !== id) {
@@ -53,13 +55,13 @@ export default function Navigation() {
         }
 
         let right = dropDown.getBoundingClientRect().right
-        console.log(windowWidth, right)
+        //console.log(windowWidth, right)
         if (windowWidth > right) {
           dropDown.style.right = "auto";
-          console.log('Left')
+          //console.log('Left')
         } else {
           dropDown.style.right = "0";
-          console.log('Right')
+          //console.log('Right')
         }
       }
 
@@ -89,10 +91,19 @@ export default function Navigation() {
   const navToggler = () => {
     if (clickCheck === 1) {
       setClickCheck(0)
-      document.getElementsByTagName('nav')[0].classList.toggle('active-nav')
     } else {
       setClickCheck(1)
-      document.getElementsByTagName('nav')[0].classList.toggle('active-nav')
+    }
+    document.getElementsByTagName('nav')[0].classList.toggle('active-nav')
+  }
+
+  function childSelector(e) {
+    if (e.target.tagName.toLowerCase() === 'a') {
+      let dropArray = document.getElementsByClassName('dropdown-menu');
+      for (let i = 0; i < dropArray.length; i++) {
+        dropArray[i].style.display = 'none';
+      }
+      setIdChecker(-1)
     }
   }
 
@@ -125,8 +136,8 @@ export default function Navigation() {
             {navData.map((data, index) => {
               return (data.dropDown === '' ? <li key={index}><Link to={'/' + data.link}>{data.name}</Link></li> :
                 (<li key={index}>
-                  <button onClick={() => mover(index)}>{data.name} <FaAngleDown className='dropDown-arrow' /></button>
-                  <ul className='dropdown-menu' data-id={index}>
+                  <button onClick={(e) => mover(index)}>{data.name} <FaAngleDown className='dropDown-arrow' /></button>
+                  <ul className='dropdown-menu' data-id={index} onClick={childSelector}>
                     {data.dropDown.links.map((dropData, index) => {
                       //console.log(dropData.dropLink, dropData.dropName)
                       return (<li key={index}><Link to={'/' + dropData.dropLink}>{dropData.dropName}</Link></li>)
