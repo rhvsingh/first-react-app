@@ -133,7 +133,7 @@ export default function Navigation() {
         <nav>
           <span></span>
           <ul>
-            {navData.map((data, index) => {
+            {/* {navData.map((data, index) => {
               return (data.dropDown === '' ? <li key={index}><Link to={'/' + data.link}>{data.name}</Link></li> :
                 (<li key={index}>
                   <button onClick={(e) => mover(index)}>{data.name} <FaAngleDown className='dropDown-arrow' /></button>
@@ -146,25 +146,18 @@ export default function Navigation() {
                   </ul>
                 </li>)
               )
-            })}
-            {/* <li><Link to='/'>Home</Link></li>
-          <li><Link to='/table'>Table</Link></li>
-          <li>
-            <button  onClick={()=>mover(0)}>Contact</button>
-            <ul className='dropdown-menu'>
-              <li>Address</li>
-              <li>Phone</li>
-              <li>E-Mail</li>
-            </ul>
-          </li>
-          <li>
-            <button onClick={()=>mover(1)}>About</button>
-            <ul className='dropdown-menu'>
-              <li>Address</li>
-              <li>Phone</li>
-              <li>E-Mail</li>
-            </ul>
-          </li> */}
+            })} */}
+            <li><Link to='/'>Home</Link></li>
+            <li><Link to='/table'>Table</Link></li>
+            <li><Link to='/notes'>Notes</Link></li>
+            <li><Link to='/scrimba'>Scrimba</Link></li>
+            <li>
+              <button onClick={(e) => mover(0)}>More <FaAngleDown className='dropDown-arrow' /></button>
+              <ul className='dropdown-menu' data-id={0} onClick={childSelector}>
+                <li><Link to="/tenzies">Tenzies</Link></li>
+                <li><Link to="/quizapp">Quiz App</Link></li>
+              </ul>
+            </li>
           </ul>
         </nav>
       </header>

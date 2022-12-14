@@ -11,6 +11,12 @@
       "date": "Tuesday 12PM 20/10/2022",
       "reminder": true,
       "id": 2
+    },
+    {
+      "task": "Rishab ko jana hai",
+      "date": "12/7/2022",
+      "reminder": true,
+      "id": 3
     }
   ],
   "navigation": [
